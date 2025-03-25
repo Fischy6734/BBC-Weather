@@ -13,7 +13,6 @@
 </head>
 <body>
     <div id="windy"></div>
-
     <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
     <script>
         const options = {
@@ -23,10 +22,15 @@
             zoom: 5,
         };
 
-        windyInit(options, (windyAPI) => {
-            const { map } = windyAPI;
-            // You can add more Windy API functionalities here
-        });
+        if (typeof windyInit === 'undefined') {
+            console.error('Windy API script failed to load.');
+        } else {
+            windyInit(options, (windyAPI) => {
+                const { map } = windyAPI;
+                // You can add more Windy API functionalities here
+                console.log('Windy map initialized successfully.');
+            });
+        }
     </script>
 </body>
 </html>
